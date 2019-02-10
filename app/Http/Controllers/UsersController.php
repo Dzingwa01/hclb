@@ -44,6 +44,28 @@ class UsersController extends Controller
        }
     }
 
+    public function updateProfile(Request $request, User $user){
+        $input = $request->all();
+        $temp_user = $user;
+        DB::beginTransaction();
+        try{
+            if($request->has('profile_picture_url')) {
+                $path = $request->file('profile_picture_url')->store('users');
+                $user->update(['name' => $input['name'], 'surname' => $input['surname'], 'contact_number' => $input['contact_number'], 'address' => $input['address'], 'profile_picture_url' => $path]);
+            }else{
+                $user->update(['name' => $input['name'], 'surname' => $input['surname'], 'contact_number' => $input['contact_number'], 'address' => $input['address']]);
+
+            }
+            DB::commit();
+            $user = $temp_user->fresh();
+            return response()->json(['message'=>'Your profile has been updated successfully','user'=>$user],200);
+
+        }catch (\Exception $e){
+            DB::rollBack();
+            return response()->json(['message'=>'An error occured while trying to update your profile '.$e->getMessage()],500);
+        }
+    }
+
     public function getUsers(){
         $users = User::whereHas('roles',function($query){
             $query->where('name','agent');

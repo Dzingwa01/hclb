@@ -32,7 +32,7 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('product-edit/{product}','ProductController@edit');
     Route::post('product-update/{product}','ProductController@update');
     Route::get('/product/delete/{product}','ProductController@destroy');
-
+    Route::get('/create-product','ProductController@create');
     /**
      * Stock Controller routes
      */
@@ -52,6 +52,8 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('account-activation/{user}', 'RegisterController@verifyEmail');
     Route::get('user-profile','UsersController@getUserProfile');
     Route::get('agent-profile','UsersController@getUserProfile');
+    Route::post('profile-update/{user}','UsersController@updateProfile');
+
     Route::get('account-completion/{user}','PublicController@accountCompletion');
     Route::post('verify-account/{user}','PublicController@verifyAccount');
     /**

@@ -20,6 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->decimal('price','8','2');
             $table->uuid('category_id');
+
             $table->timestamps();
             $table->softDeletes();
 

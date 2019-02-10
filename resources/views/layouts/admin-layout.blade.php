@@ -43,7 +43,7 @@
     </ul>
     <ul id="slide-out" class="sidenav ">
         <li><div class="user-view">
-                <a href="#user"><img class="circle" src="{{!is_null(\Illuminate\Support\Facades\Auth::user()->profile_picture_url)?\Illuminate\Support\Facades\Auth::user()->profile_picture_url:'/img/profile_placeholder.jpg'}}"/></a>
+                <a href="#user"><img class="circle" src="{{!is_null(\Illuminate\Support\Facades\Auth::user()->profile_picture_url)?'/storage/'.\Illuminate\Support\Facades\Auth::user()->profile_picture_url:'/img/profile_placeholder.jpg'}}"/></a>
                 <a href="#name"><span class="name" style="color:black;font-weight: bolder">{{\Illuminate\Support\Facades\Auth::user()->name . " ".\Illuminate\Support\Facades\Auth::user()->surname}}</span></a>
                 <a href="#email"><span class="email" style="color:black;font-weight: bolder">{{\Illuminate\Support\Facades\Auth::user()->roles[0]->display_name}}</span></a>
 
@@ -75,12 +75,12 @@
                     Manage Stock </div>
                 <div class="collapsible-body" >
                     <ul>
-                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('products')}}"><i
-                                        class="tiny material-icons">add_to_queue</i>Stock List</a></li>
-                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('product-categories')}}"><i
-                                        class="tiny material-icons">bookmark_border</i>Product Categories</a></li>
                         <li><a style="color:black;font-weight: bolder" class="" href="/assign-stock"><i
                                         class="tiny material-icons">assignment_ind</i>Assign Stock</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('product-categories')}}"><i
+                                        class="tiny material-icons">bookmark_border</i>Product Categories</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('products')}}"><i
+                                        class="tiny material-icons">add_to_queue</i>Stock List</a></li>
                     </ul>
                 </div>
             </li>
@@ -89,11 +89,11 @@
         <ul class="collapsible popout" style="margin-top:1em;">
             <li>
                 <div class="collapsible-header" style="color:black;font-weight: bolder"> <i class="tiny material-icons">supervisor_account</i>
-                    Agents </div>
+                    Manage Agents </div>
                 <div class="collapsible-body" >
                     <ul>
                         <li><a style="color:black;font-weight: bolder" class="" href="{{url('users')}}"><i
-                                        class="tiny material-icons">account_circle</i>Manage Agents</a></li>
+                                        class="tiny material-icons">account_circle</i> Agents List</a></li>
                         <li><a style="color:black;font-weight: bolder" class="" href="{{url('locations')}}"><i
                                         class="tiny material-icons">assignment</i>Agent Locations</a></li>
                     </ul>

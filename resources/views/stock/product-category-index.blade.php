@@ -33,7 +33,7 @@
                         @csrf
                         <div class="row">
                             <div class="input-field col m6">
-                                <input id="category_name" type="text" class="validate">
+                                <input id="category_name" required type="text" class="validate">
                                 <label for="location_name">Product category Name</label>
                             </div>
                             <div class="input-field col m6">

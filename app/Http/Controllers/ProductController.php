@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\ProductUpdateRequest;
 use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
@@ -11,6 +12,10 @@ use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -19,8 +24,8 @@ class ProductController extends Controller
     public function index()
     {
         //
-        $categories = ProductCategory::orderBy('category_name','asc')->get();
-        return view('stock.index',compact('categories'));
+
+        return view('stock.index');
     }
 
     public function getProducts(){
@@ -42,6 +47,8 @@ class ProductController extends Controller
     public function create()
     {
         //
+        $categories = ProductCategory::orderBy('category_name','asc')->get();
+        return view('stock.product-create',compact('categories'));
     }
 
     /**
@@ -55,9 +62,10 @@ class ProductController extends Controller
         //
         $input = $request->validated();
         DB::beginTransaction();
-
         try{
-            $product = Product::create(['product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode'],'category_id'=>$input['category_id']]);
+            $path = $request->file('product_image_url')->store('products');
+            $product = Product::create(['product_image_url'=>$path,'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode'],'category_id'=>$input['category_id']]);
+
             DB::commit();
             return response()->json(['message'=>'Product saved successfully','product'=>$product],200);
         }catch(\Exception $e){
@@ -97,15 +105,22 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductStoreRequest $request, Product $product)
+    public function update(ProductUpdateRequest $request, Product $product)
     {
         //
         $input = $request->validated();
         DB::beginTransaction();
 
         try{
-            $product->update(['category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
-            DB::commit();
+            if($request->has('product_image_url')){
+                $path = $request->file('product_image_url')->store('products');
+                $product->update(['product_image_url'=>$path,'category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+
+            }else{
+                $product->update(['category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+
+            }
+             DB::commit();
             return response()->json(['message'=>'Product updated successfully','product'=>$product],200);
         }catch(\Exception $e){
             DB::rollBack();

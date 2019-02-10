@@ -11,7 +11,7 @@
                         @csrf
                         <div class="row">
                             <div class="input-field col m6">
-                                <input id="category_name" type="text" value="{{$productCategory->category_name}}" class="validate">
+                                <input id="category_name" required type="text" value="{{$productCategory->category_name}}" class="validate">
                                 <label for="location_name">Product category Name</label>
                             </div>
                             <div class="input-field col m6">

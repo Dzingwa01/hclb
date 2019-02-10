@@ -23,58 +23,11 @@
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large teal tooltipped btn modal-trigger" data-position="left" data-tooltip="Add New Product" href="#modal1">
+            <a class="btn-floating btn-large teal tooltipped btn" data-position="left" data-tooltip="Add New Product" href="{{url('create-product')}}">
                 <i class="large material-icons">add</i>
             </a>
         </div>
-        <div id="modal1" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <h4>Add New Product</h4>
-                <div class="row">
-                    <form class="col s12">
-                        @csrf
-                        <div class="row">
-                            <div class="input-field col m6 s12">
-                                <input id="barcode" type="text" class="validate">
-                                <label for="barcode">Product BarCode</label>
-                            </div>
-                            <div class="input-field col m6 s12">
-                                <input id="product_name" type="text" class="validate">
-                                <label for="product_name">Product Name</label>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="input-field col m6 s12">
-                                <input id="price" type="text" class="validate">
-                                <label for="price">Product Prize</label>
-                            </div>
-                            <div class="input-field col m6">
-                                <textarea id="description" class="materialize-textarea"></textarea>
-                                <label for="description">Product Description</label>
-                            </div>
-                        </div>
-                        <div class="row">
 
-                            <div class="input-field col m6">
-                                <select id="category_id">
-                                    @foreach($categories as $category)
-                                        <option value="{{$category->id}}">{{$category->category_name}}</option>
-                                    @endforeach
-                                </select>
-                                <label>Product Category</label>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn">Cancel<i class="material-icons right">close</i> </a>
-                <button class="btn waves-effect waves-light" style="margin-left:2em;" id="save-product" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
-        </div>
         <style>
             th{
                 text-transform: uppercase!important;

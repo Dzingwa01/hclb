@@ -10,31 +10,31 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col m6">
-                            <input id="name" type="text" class="validate">
+                            <input required id="name" type="text" class="validate">
                             <label for="name">Agent Name</label>
                         </div>
                         <div class="input-field col m6">
-                            <input id="surname" type="text" class="validate">
+                            <input required id="surname" type="text" class="validate">
                             <label for="surname">Agent Surname</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col m6">
-                            <input id="email" type="email" class="validate">
+                            <input required id="email" type="email" class="validate">
                             <label for="email">Agent Email</label>
                         </div>
                         <div class="input-field col m6">
-                            <input id="contact_number" type="tel" class="validate">
+                            <input required id="contact_number" type="tel" class="validate">
                             <label for="contact_number">Agent Contact Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col m6">
-                            <textarea id="address" class="materialize-textarea"></textarea>
+                            <textarea required id="address" class="materialize-textarea"></textarea>
                             <label for="address">Agent Address</label>
                         </div>
                         <div class="input-field col m6">
-                            <select id="location_id">
+                            <select required id="location_id">
                                 @foreach($locations as $location)
                                     <option value="{{$location->id}}">{{$location->location_name}}</option>
                                 @endforeach
@@ -65,7 +65,6 @@
                 $('select').formSelect();
 
             });
-
 
             $('#save-agent-form').on('submit',function(e){
                 e.preventDefault();

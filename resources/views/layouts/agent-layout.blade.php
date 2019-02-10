@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>HCLB</title>
+    <title>HLCB</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>--}}
@@ -24,7 +24,7 @@
     <nav class="white" role="navigation" style="height: 5em;">
         <div class="nav-wrapper">
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a id="logo-container" href="{{url('/home')}}" class="brand-logo center">HCLB
+            <a id="logo-container" href="{{url('/home')}}" class="brand-logo center">HLCB
             </a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -43,7 +43,7 @@
     </ul>
     <ul id="slide-out" class="sidenav ">
         <li><div class="user-view">
-                <a href="#user"><img class="circle" src="{{!is_null(\Illuminate\Support\Facades\Auth::user()->profile_picture_url)?\Illuminate\Support\Facades\Auth::user()->profile_picture_url:'/img/profile_placeholder.jpg'}}"/></a>
+                <a href="#user"><img class="circle" src="{{!is_null(\Illuminate\Support\Facades\Auth::user()->profile_picture_url)?'/storage/'.\Illuminate\Support\Facades\Auth::user()->profile_picture_url:'/img/profile_placeholder.jpg'}}"/></a>
                 <a href="#name"><span class="name" style="color:black;font-weight: bolder">{{\Illuminate\Support\Facades\Auth::user()->name . " ".\Illuminate\Support\Facades\Auth::user()->surname}}</span></a>
                 <a href="#email"><span class="email" style="color:black;font-weight: bolder">{{\Illuminate\Support\Facades\Auth::user()->roles[0]->display_name}}</span></a>
 

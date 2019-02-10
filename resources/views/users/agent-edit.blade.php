@@ -10,27 +10,27 @@
                     @csrf
                     <div class="row">
                         <div class="input-field col m6">
-                            <input id="name" type="text" value="{{$agent->name}}" class="validate">
+                            <input id="name" required type="text" value="{{$agent->name}}" class="validate">
                             <label for="name">Agent Name</label>
                         </div>
                         <div class="input-field col m6">
-                            <input id="surname" type="text" value="{{$agent->surname}}" class="validate">
+                            <input id="surname" required type="text" value="{{$agent->surname}}" class="validate">
                             <label for="surname">Agent Surname</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col m6">
-                            <input id="email" type="email" value="{{$agent->email}}" class="validate">
+                            <input id="email" required type="email" value="{{$agent->email}}" class="validate">
                             <label for="email">Agent Email</label>
                         </div>
                         <div class="input-field col m6">
-                            <input id="contact_number" type="tel" value="{{$agent->contact_number}}" class="validate">
+                            <input id="contact_number" required type="tel" value="{{$agent->contact_number}}" class="validate">
                             <label for="contact_number">Agent Contact Number</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col m6">
-                            <textarea id="address" class="materialize-textarea">{{$agent->address}}</textarea>
+                            <textarea id="address" required class="materialize-textarea">{{$agent->address}}</textarea>
                             <label for="address">Agent Address</label>
                         </div>
                         <div class="input-field col m6">

@@ -4,28 +4,28 @@
     <div class="container">
 
         <div class="row" >
-            <div class="col s12 card" style="margin-top:2em;" >
-                <h5 style="text-align: center;">Edit Product</h5>
+            <div class="col s12 card" style="margin-top:2em;">
+                <h5 style="text-align: center;">Add New Product</h5>
                 <div class="row">
-                    <form id="update-product-form" class="col s12">
+                    <form id="save-product-form" enctype="multipart/form-data" class="col s12">
                         @csrf
                         <div class="row">
                             <div class="input-field col m6 s12">
-                                <input id="barcode" required value="{{$product->barcode}}" type="text" class="validate">
+                                <input id="barcode" required type="text" class="validate">
                                 <label for="barcode">Product BarCode</label>
                             </div>
                             <div class="input-field col m6 s12">
-                                <input id="product_name" required value="{{$product->product_name}}" type="text" class="validate">
+                                <input required id="product_name" type="text" class="validate">
                                 <label for="product_name">Product Name</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="input-field col m6 s12">
-                                <input id="price" required value="{{$product->price}}" type="text" class="validate">
+                                <input required id="price" type="text" class="validate">
                                 <label for="price">Product Prize</label>
                             </div>
                             <div class="input-field col m6">
-                                <textarea id="description" class="materialize-textarea">{{$product->description}}</textarea>
+                                <textarea  id="description" class="materialize-textarea"></textarea>
                                 <label for="description">Product Description</label>
                             </div>
                         </div>
@@ -34,16 +34,16 @@
                             <div class="input-field col m6">
                                 <select required id="category_id">
                                     @foreach($categories as $category)
-                                        <option value="{{$category->id}}" {{$product->category_id==$category->id?'selected':''}}>{{$category->category_name}}</option>
+                                        <option value="{{$category->id}}">{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                                 <label>Product Category</label>
                             </div>
                             <div class="col m6">
-                                <img width="180" height="180" src="{{'/storage/'.$product->product_image_url}}" id="previewing">
+                                <img src="" id="previewing">
                                 <div class="file-field input-field" style="bottom:0px!important;">
                                     <div class="btn">
-                                        <span>Change Product Image</span>
+                                        <span>Upload Product Image</span>
                                         <input id="product_image_url" type="file">
                                     </div>
                                     <div class="file-path-wrapper">
@@ -55,17 +55,18 @@
                         </div>
                         <div class="row">
                             <div class="col offset-m4">
-                                <a href="/products" class="waves-effect waves-green btn">Cancel<i class="material-icons right">close</i> </a>
-                                <button class="btn waves-effect waves-light" style="margin-left:2em;" id="update-product" name="action">Update
+                                <a href="{{url('products')}}" class="waves-effect waves-green btn">Cancel<i class="material-icons right">close</i> </a>
+                                <button class="btn waves-effect waves-light" style="margin-left:2em;" id="save-product" name="action">Submit
                                     <i class="material-icons right">send</i>
                                 </button>
                             </div>
-                        </div>
 
+                        </div>
                     </form>
                 </div>
             </div>
         </div>
+
 
         <style>
             th{
@@ -103,8 +104,7 @@
                     $('#previewing').attr('width', '200px');
                     $('#previewing').attr('height', '200px');
                 }
-
-                $('#update-product-form').on('submit', function (e) {
+                $('#save-product-form').on('submit', function (e) {
                     e.preventDefault();
                     let formData = new FormData();
                     formData.append('barcode', $('#barcode').val());
@@ -116,9 +116,8 @@
                         formData.append('product_image_url', file);
                     });
 
-                    let product = {!! $product !!}
                     $.ajax({
-                        url: "/product-update/"+product.id,
+                        url: "{{ route('products.store') }}",
                         processData: false,
                         contentType: false,
                         data: formData,
@@ -127,7 +126,7 @@
                         success: function (response, a, b) {
                             console.log("success", response);
                             alert(response.message);
-                            window.location.href = '/products';
+                            window.location.href = "/products";
                         },
                         error: function (response) {
                             console.log("error", response);
@@ -142,7 +141,7 @@
                                 }
                             }
                             alert(message);
-                            $("#modal1").close();
+                            // $("#modal1").close();
                         }
                     });
                 });
