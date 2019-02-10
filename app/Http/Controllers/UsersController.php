@@ -49,8 +49,10 @@ class UsersController extends Controller
             $query->where('name','agent');
             return $query;
         })->get();
+        $users->load('roles','location');
+
         return Datatables::of($users)->addColumn('action', function ($user) {
-            $re = '/user/' . $user->id;
+            $re = '/update-user/' . $user->id;
             $sh = '/user/show/' . $user->id;
             $del = '/user/delete/' . $user->id;
             return '<a href=' . $re . ' title="Edit User"><i class="material-icons">create</i></a><a href=' . $del . ' title="Delete" style="color:red"><i class="material-icons">delete_forever</i></a>';
@@ -102,24 +104,7 @@ class UsersController extends Controller
         }
     }
 
-    public function accountCompletion(User $user){
 
-        return view('users.account-completion',compact('user'));
-
-    }
-
-    public function verifyAccount(Request $request,User $user){
-
-        DB::beginTransaction();
-        $input = $request->all();
-        try{
-            $user->update(['email_verified_at'=>Carbon::now(),'password'=>Hash::make($input['password'])]);
-            DB::commit();
-            return redirect('login');
-        }catch (\Exception $e){
-            DB::rollBack();
-        }
-    }
 
     /**
      * Display the specified resource.
@@ -138,9 +123,11 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $agent)
     {
         //
+        $locations = Location::orderBy('location_name','asc')->get();
+        return view('users.agent-edit',compact('agent','locations'));
     }
 
     /**
@@ -150,9 +137,20 @@ class UsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $agent)
     {
         //
+        $input = $request->all();
+        DB::beginTransaction();
+        try{
+            $agent->update(['name'=>$input['name'],'location_id'=>$input['location_id'],'surname'=>$input['surname'],'contact_number'=>$input['contact_number'],'address'=>$input['address'],'email'=>$input['email'],'password'=>Hash::make('secret')]);
+             DB::commit();
+            return response()->json(['message'=>'User updated successfully and an email has been sent for account activation'],200);
+
+        }catch (\Exception $e) {
+            DB::rollback();
+            return response()->json(['message' => 'User could not be updated at the moment ' . $e->getMessage()], 400);
+        }
     }
 
     /**

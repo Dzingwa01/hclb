@@ -3,7 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>HCLB</title>
+    <title>HLCB</title>
     <!-- CSS  -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     {{--<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>--}}
@@ -24,7 +24,7 @@
     <nav class="white" role="navigation" style="height: 5em;">
         <div class="nav-wrapper">
             <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-            <a id="logo-container" href="{{url('/home')}}" class="brand-logo center">HCLB
+            <a id="logo-container" href="{{url('/home')}}" class="brand-logo center">HLCB
             </a>
             <ul class="right hide-on-med-and-down">
                 <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Account<i class="material-icons right">arrow_drop_down</i></a></li>
@@ -71,12 +71,14 @@
         </ul>
         <ul class="collapsible popout" style="margin-top:1em;">
             <li>
-                <div class="collapsible-header" style="color:black;font-weight: bolder"> <i class="tiny material-icons">add_shopping_cart</i>
+                <div class="collapsible-header" style="color:black;font-weight: bolder"> <i class="tiny material-icons">business_center</i>
                     Manage Stock </div>
                 <div class="collapsible-body" >
                     <ul>
                         <li><a style="color:black;font-weight: bolder" class="" href="{{url('products')}}"><i
                                         class="tiny material-icons">add_to_queue</i>Stock List</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('product-categories')}}"><i
+                                        class="tiny material-icons">bookmark_border</i>Product Categories</a></li>
                         <li><a style="color:black;font-weight: bolder" class="" href="/assign-stock"><i
                                         class="tiny material-icons">assignment_ind</i>Assign Stock</a></li>
                     </ul>

@@ -15,6 +15,7 @@
                         <th>Surname</th>
                         <th>Email</th>
                         <th>Phone</th>
+                        <th>Location</th>
                         <th>System Role</th>
                         <th>Actions</th>
                     </tr>
@@ -54,6 +55,7 @@
                             {data: 'surname', name: 'surname'},
                             {data: 'email', name: 'email'},
                             {data: 'contact_number', name: 'contact_number'},
+                            {data: 'location.location_name', name: 'location.location_name'},
                             {data:'roles[0].name',name:'roles[0].name'},
                             {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]

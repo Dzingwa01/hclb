@@ -41,6 +41,10 @@ class StockController extends Controller
             ->make(true);
     }
 
+    public function getAgentAssignedStock(User $agent){
+
+    }
+
     public function assignAgentStock(User $agent){
         $products = Product::orderBy('product_name','asc')->get();
 

@@ -32,7 +32,7 @@ class HomeController extends Controller
         if($user->roles[0]->name=='app-admin'){
             return view('admin-home',compact('users','locations'));
         }else{
-            return view('home');
+            return view('agent-home',compact('user'));
         }
     }
 }

@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => env('MAIL_FROM_ADDRESS', 'no-reply@hclb.co.za'),
-        'name' => env('MAIL_FROM_NAME', 'HCLB'),
+        'name' => env('MAIL_FROM_NAME', 'HLCB'),
     ],
 
     /*

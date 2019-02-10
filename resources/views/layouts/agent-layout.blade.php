@@ -72,11 +72,13 @@
         <ul class="collapsible popout" style="margin-top:1em;">
             <li>
                 <div class="collapsible-header" style="color:black;font-weight: bolder"> <i class="tiny material-icons">add_shopping_cart</i>
-                    Stock </div>
+                   Manage Stock </div>
                 <div class="collapsible-body" >
                     <ul>
-                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('users')}}"><i
+                        <li><a style="color:black;font-weight: bolder" class="" href="#"><i
                                         class="tiny material-icons">add_to_queue</i>Assigned Stock</a></li>
+                        {{--<li><a style="color:black;font-weight: bolder" class="" href="{{url('get-assigned-stock/'.$user->id)}}"><i--}}
+                                        {{--class="tiny material-icons">add_to_queue</i>Assigned Stock</a></li>--}}
                         {{--<li><a style="color:black;font-weight: bolder" class="" href="{{url('roles')}}"><i--}}
                                         {{--class="tiny material-icons">assignment</i>Agent Stock</a></li>--}}
 

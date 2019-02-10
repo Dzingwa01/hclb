@@ -34,6 +34,6 @@ class InviteUser extends Mailable
      */
     public function build()
     {
-        return $this->subject('Invitation to join HCLB')->markdown('emails.users.invite-user');
+        return $this->subject('Invitation to join HLCB')->markdown('emails.users.invite-user');
     }
 }

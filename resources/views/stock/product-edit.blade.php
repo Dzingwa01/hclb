@@ -28,7 +28,17 @@
                                 <textarea id="description" class="materialize-textarea">{{$product->description}}</textarea>
                                 <label for="description">Product Description</label>
                             </div>
+                        </div>
+                        <div class="row">
 
+                            <div class="input-field col m6">
+                                <select id="category_id">
+                                    @foreach($categories as $category)
+                                        <option value="{{$category->id}}" {{$product->category_id==$category->id?'selected':''}}>{{$category->category_name}}</option>
+                                    @endforeach
+                                </select>
+                                <label>Product Category</label>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="col offset-m4">
@@ -62,6 +72,8 @@
                     formData.append('product_name', $('#product_name').val());
                     formData.append('price', $('#price').val());
                     formData.append('description', $('#description').val());
+                    formData.append('category_id', $('#category_id').val());
+
                     let product = {!! $product !!}
                     $.ajax({
                         url: "/product-update/"+product.id,

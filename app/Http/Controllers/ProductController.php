@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
 use App\Product;
+use App\ProductCategory;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
@@ -18,11 +19,12 @@ class ProductController extends Controller
     public function index()
     {
         //
-        return view('stock.index');
+        $categories = ProductCategory::orderBy('category_name','asc')->get();
+        return view('stock.index',compact('categories'));
     }
 
     public function getProducts(){
-        $products = Product::orderBy('product_name','asc')->get();
+        $products = Product::with('product_category')->orderBy('product_name','asc')->get();
         return Datatables::of($products)->addColumn('action', function ($product) {
             $re = '/product-edit/' . $product->id;
             $sh = '/product/show/' . $product->id;
@@ -55,7 +57,7 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try{
-            $product = Product::create(['product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+            $product = Product::create(['product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode'],'category_id'=>$input['category_id']]);
             DB::commit();
             return response()->json(['message'=>'Product saved successfully','product'=>$product],200);
         }catch(\Exception $e){
@@ -84,7 +86,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
-        return view('stock.product-edit',compact('product'));
+        $categories = ProductCategory::orderBy('category_name','asc')->get();
+        return view('stock.product-edit',compact('product','categories'));
     }
 
     /**
@@ -101,7 +104,7 @@ class ProductController extends Controller
         DB::beginTransaction();
 
         try{
-            $product->update(['product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+            $product->update(['category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
             DB::commit();
             return response()->json(['message'=>'Product updated successfully','product'=>$product],200);
         }catch(\Exception $e){
