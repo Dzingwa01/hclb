@@ -1,0 +1,12 @@
+@media only screen and (min-width: 993px) {
+    nav a.sidenav-trigger {
+        display: inline!important;
+    }
+    nav ul a {
+        color: black!important;
+    }
+    nav{
+        height:6em!important;
+    }
+
+}
