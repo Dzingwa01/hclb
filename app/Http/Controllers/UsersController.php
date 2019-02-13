@@ -167,7 +167,7 @@ class UsersController extends Controller
         try{
             $agent->update(['name'=>$input['name'],'location_id'=>$input['location_id'],'surname'=>$input['surname'],'contact_number'=>$input['contact_number'],'address'=>$input['address'],'email'=>$input['email'],'password'=>Hash::make('secret')]);
              DB::commit();
-            return response()->json(['message'=>'User updated successfully and an email has been sent for account activation'],200);
+            return response()->json(['message'=>'User updated successfully'],200);
 
         }catch (\Exception $e) {
             DB::rollback();

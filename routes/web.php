@@ -47,6 +47,7 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('get-users', 'UsersController@getUsers')->name('get-users');
     Route::get('create-user','UsersController@create');
     Route::get('/update-user/{agent}','UsersController@edit');
+    Route::post('/agent-update/{agent}','UsersController@update');
 
     Route::get('/user/delete/{user}', 'UsersController@destroy');
     Route::get('account-activation/{user}', 'RegisterController@verifyEmail');
