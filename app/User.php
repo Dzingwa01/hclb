@@ -33,6 +33,10 @@ class User extends Authenticatable  implements MustVerifyEmail
         'password', 'remember_token',
     ];
 
+    public function assigned_stock(){
+        return $this->belongsToMany(Product::class)->withPivot('product_quantity');
+    }
+
     public function location(){
         return $this->belongsTo(Location::class,'location_id');
     }

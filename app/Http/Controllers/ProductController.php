@@ -64,7 +64,7 @@ class ProductController extends Controller
         DB::beginTransaction();
         try{
             $path = $request->file('product_image_url')->store('products');
-            $product = Product::create(['product_image_url'=>$path,'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode'],'category_id'=>$input['category_id']]);
+            $product = Product::create(['quantity'=>$input['quantity'],'product_image_url'=>$path,'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode'],'category_id'=>$input['category_id']]);
 
             DB::commit();
             return response()->json(['message'=>'Product saved successfully','product'=>$product],200);
@@ -114,10 +114,10 @@ class ProductController extends Controller
         try{
             if($request->has('product_image_url')){
                 $path = $request->file('product_image_url')->store('products');
-                $product->update(['product_image_url'=>$path,'category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+                $product->update(['product_image_url'=>$path,'quantity'=>$input['quantity'],'category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
 
             }else{
-                $product->update(['category_id'=>$input['category_id'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
+                $product->update(['category_id'=>$input['category_id'],'quantity'=>$input['quantity'],'product_name'=>$input['product_name'],'description'=>$input['description'],'price'=>$input['price'],'barcode'=>$input['barcode']]);
 
             }
              DB::commit();

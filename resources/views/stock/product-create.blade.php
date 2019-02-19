@@ -1,12 +1,12 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
+        <div>
+            <h6 style="text-align: center;margin-top:2em;text-transform: uppercase;font-weight: bolder;">Add New Product</h6>
+            <div  class="col s12 card hoverable" style="margin-left: 1em;margin-right: 1em;">
 
-        <div class="row" >
-            <div class="col s12 card" style="margin-top:2em;">
-                <h5 style="text-align: center;">Add New Product</h5>
-                <div class="row">
+                <div class="row" style="margin-left: 2em;margin-right: 2em;">
                     <form id="save-product-form" enctype="multipart/form-data" class="col s12">
                         @csrf
                         <div class="row">
@@ -21,12 +21,12 @@
                         </div>
                         <div class="row">
                             <div class="input-field col m6 s12">
-                                <input required id="price" type="text" class="validate">
+                                <input required id="price" type="number" step="0.1" class="validate">
                                 <label for="price">Product Prize</label>
                             </div>
-                            <div class="input-field col m6">
-                                <textarea  id="description" class="materialize-textarea"></textarea>
-                                <label for="description">Product Description</label>
+                            <div class="input-field col m6 s12">
+                                <input required id="quantity" type="number" class="validate">
+                                <label for="quantity">Product Quantity</label>
                             </div>
                         </div>
                         <div class="row">
@@ -39,6 +39,13 @@
                                 </select>
                                 <label>Product Category</label>
                             </div>
+
+                            <div class="input-field col m6">
+                                <textarea  id="description" class="materialize-textarea"></textarea>
+                                <label for="description">Product Description</label>
+                            </div>
+                        </div>
+                        <div class="row">
                             <div class="col m6">
                                 <img src="" id="previewing">
                                 <div class="file-field input-field" style="bottom:0px!important;">
@@ -112,6 +119,8 @@
                     formData.append('price', $('#price').val());
                     formData.append('description', $('#description').val());
                     formData.append('category_id', $('#category_id').val());
+                    formData.append('quantity', $('#quantity').val());
+
                     jQuery.each(jQuery('#product_image_url')[0].files, function (i, file) {
                         formData.append('product_image_url', file);
                     });

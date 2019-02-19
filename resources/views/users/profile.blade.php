@@ -1,13 +1,12 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-    <div class="container">
-        <div class="row" style="margin-right: 2em;margin-left: 2em;margin-top:1em;">
+    <div class="container-fluid">
+        <div class="row" style="margin-right: 1em;margin-left: 1em;margin-top:1em;">
 
             <div class="card hoverable">
-
                 <form class="col s12 " style="margin-top:2em;">
-                    <h6 style="text-align: center;font-weight: bolder;">Your Profile Information</h6>
+                    <h6 style="text-align: center;font-weight: bolder;text-transform: uppercase">Your Profile Information</h6>
                     @csrf
                     <div class="row">
                         <div class="col m3 s12">
@@ -19,7 +18,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col m7">
+                        <div class="col m7 s12">
                             <div style="margin-top:5em;">
                                 <img src="" id="previewing">
                                 <div class="file-field input-field" style="bottom:0px!important;">
@@ -37,27 +36,27 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="name" required type="text" value="{{$user->name}}" class="validate">
                             <label for="name">Name</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="surname" required type="text" value="{{$user->surname}}" class="validate">
                             <label for="surname">Surname</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="email" required type="email" class="validate" value="{{$user->email}}" disabled>
                             <label for="email">Email</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="contact_number" required type="tel" class="validate" value="{{$user->contact_number}}">
                             <label for="contact_number">Contact Number</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <textarea id="address" required class="materialize-textarea">{{$user->address}}</textarea>
                             <label for="address">Address</label>
                         </div>
@@ -69,11 +68,11 @@
 
                 </form>
                 <div class="row">
-                    <div style="margin-bottom: 2em!important;" class="col offset-m4">
-                        <button class="btn waves-effect waves-light profile-back" style="margin-left:2em;" >Cancel
+                    <div style="margin-bottom: 2em!important;" class="col offset-m4 m6 s12">
+                        <button class="btn waves-effect waves-light profile-back" style="margin-left:2em;margin-top:1em;" >Cancel
                             <i class="material-icons right">close</i>
                         </button>
-                        <button class="btn waves-effect waves-light" style="margin-left:2em;margin-right: 2em;" id="update-profile" name="action">Save
+                        <button class="btn waves-effect waves-light" style="margin-left:2em;margin-right: 2em;margin-top:1em;" id="update-profile" name="action">Save
                             <i class="material-icons right">send</i>
                         </button>
                     </div>

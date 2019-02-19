@@ -39,7 +39,10 @@ Route::group(['middleware'=>'web'],function() {
     Route::get('assign-stock','StockController@index');
     Route::get('get-agents-assign-stock','StockController@getAgents')->name('get-agents-assign-stock');
     Route::get('assign-agent-stock/{agent}','StockController@assignAgentStock');
-    Route::get('get-assigned-stock/{agent}','StockController@getAgentAssignedStock');
+    Route::get('get-unassigned-stock/{agent}','StockController@getAgentAssignedStock');
+    Route::post('save-assigned-stock','StockController@saveAssignedStock');
+    Route::get('view-assigned-stock/{agent}','StockController@viewAssignedStock');
+    Route::get('get-agent-assigned-products/{agent}','StockController@getViewAssignedStock');
     /**
      * User Routes
      */

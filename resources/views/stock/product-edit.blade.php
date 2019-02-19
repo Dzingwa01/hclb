@@ -1,12 +1,12 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row" >
-            <div class="col s12 card" style="margin-top:2em;" >
-                <h5 style="text-align: center;">Edit Product</h5>
-                <div class="row">
+            <div class="" style="margin-top:2em;" >
+                <h6 style="text-align: center; font-weight: bolder;">Edit Product</h6>
+                <div class="card hoverable">
                     <form id="update-product-form" class="col s12">
                         @csrf
                         <div class="row">
@@ -21,16 +21,20 @@
                         </div>
                         <div class="row">
                             <div class="input-field col m6 s12">
-                                <input id="price" required value="{{$product->price}}" type="text" class="validate">
+                                <input required id="quantity" type="number" value="{{$product->quantity}}" class="validate">
+                                <label for="quantity">Product Quantity</label>
+                            </div>
+                            <div class="input-field col m6 s12">
+                                <input id="price" required value="{{$product->price}}" type="number" step="0.1" class="validate">
                                 <label for="price">Product Prize</label>
                             </div>
+
+                        </div>
+                        <div class="row">
                             <div class="input-field col m6">
                                 <textarea id="description" class="materialize-textarea">{{$product->description}}</textarea>
                                 <label for="description">Product Description</label>
                             </div>
-                        </div>
-                        <div class="row">
-
                             <div class="input-field col m6">
                                 <select required id="category_id">
                                     @foreach($categories as $category)
@@ -39,6 +43,9 @@
                                 </select>
                                 <label>Product Category</label>
                             </div>
+
+                        </div>
+                        <div class="row">
                             <div class="col m6">
                                 <img width="180" height="180" src="{{'/storage/'.$product->product_image_url}}" id="previewing">
                                 <div class="file-field input-field" style="bottom:0px!important;">
@@ -112,6 +119,8 @@
                     formData.append('price', $('#price').val());
                     formData.append('description', $('#description').val());
                     formData.append('category_id', $('#category_id').val());
+                    formData.append('quantity', $('#quantity').val());
+
                     jQuery.each(jQuery('#product_image_url')[0].files, function (i, file) {
                         formData.append('product_image_url', file);
                     });

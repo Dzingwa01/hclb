@@ -2,35 +2,33 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
-            <h6 style="text-transform:uppercase;text-align: center;font-weight: bolder;margin-top:2em;">Agents</h6>
-            {{--<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>--}}
-        </div>
-        <div class="row" style="margin-left: 2em;margin-right: 2em;">
-            <div class="col s12">
-                <h4>Edit Agent Location</h4>
+
+        <div class="row" style="margin-left: 1em;margin-right: 1em;margin-top:3em;">
+            <h6 style="font-weight: bolder;text-transform: uppercase;text-align: center;">Edit Agent Location</h6>
+            <div class="col s12 card hoverable">
+
                 <div class="row">
                     <form class="col s12">
                         @csrf
                         <div class="row">
-                            <div class="input-field col m6">
+                            <div class="input-field col m6 s12">
                                 <input id="location_name" type="text" value="{{$location->location_name}}" class="validate">
                                 <label for="location_name">Location Name</label>
                             </div>
-                            <div class="input-field col m6">
+                            <div class="input-field col m6 s12">
                                 <input id="city" type="text" value="{{$location->city}}" class="validate">
                                 <label for="city">City</label>
                             </div>
                         </div>
                         <div class="row">
-                            <div class="input-field col m6">
+                            <div class="input-field col m6 s12">
                                 <textarea id="description" class="materialize-textarea">{{$location->description}}</textarea>
                                 <label for="description">Description</label>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col offset-m4">
-                                <a href="{{url('locations')}}" class="waves-effect waves-green btn">Cancel<i class="material-icons right">arrow_back</i> </a>
+                                <a href="{{url('locations')}}" class="waves-effect waves-green btn">Cancel<i class="material-icons right">close</i> </a>
                                 <button class="btn waves-effect waves-light" style="margin-left:2em;" id="update-location" name="action">Update
                                     <i class="material-icons right">send</i>
                                 </button>

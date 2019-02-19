@@ -1,11 +1,9 @@
 @extends('layouts.agent-layout')
 
 @section('content')
-    <div class="container">
-        <div class="row" style="margin-right: 2em;margin-left: 2em;margin-top:1em;">
-
+    <div class="container-fluid">
+        <div class="row" style="margin-right: 1em;margin-left: 1em;margin-top:1em;">
             <div class="card hoverable">
-
                 <form class="col s12 " style="margin-top:2em;">
                     <h6 style="text-align: center;font-weight: bolder;">Your Profile Information</h6>
                     @csrf
@@ -37,27 +35,27 @@
                     </div>
 
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="name" required type="text" value="{{$user->name}}" class="validate">
                             <label for="name">Name</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="surname" required type="text" value="{{$user->surname}}" class="validate">
                             <label for="surname">Surname</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="email" required type="email" class="validate" value="{{$user->email}}" disabled>
                             <label for="email">Email</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="contact_number" required type="tel" class="validate" value="{{$user->contact_number}}">
                             <label for="contact_number">Contact Number</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <textarea id="address" required class="materialize-textarea">{{$user->address}}</textarea>
                             <label for="address">Address</label>
                         </div>

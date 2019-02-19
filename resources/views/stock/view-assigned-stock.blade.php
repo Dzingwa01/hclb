@@ -3,18 +3,20 @@
 @section('content')
     <div class="container-fluid">
         <div class="row">
-            <h6 style="text-transform:uppercase;text-align: center;font-weight: bolder;margin-top:2em;">Product Categories</h6>
-            {{--<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>--}}
+            <h6 style="text-transform:uppercase;text-align: center;font-weight: bolder;margin-top:2em;">Assigned Stock for {{$agent->name.' '.$agent->surname}}</h6>
+            <input id="user_id" value="{{$agent->id}}" hidden/>
         </div>
         <div class="row" style="margin-left: 2em;margin-right: 2em;">
             <div class="col s12 card hoverable">
-                <table class="table table-bordered" style="width: 100%!important;" id="categories-table">
+                <table class="table table-bordered" style="width: 100%!important;" id="stock-table">
                     <thead>
                     <tr>
-                        <th>Category name</th>
+                        <th>Bar Code</th>
+                        <th>Product Name</th>
                         <th>Quantity</th>
                         <th>Total Value(R)</th>
                         <th>Description</th>
+                        <th>Product Category</th>
                         <th>Actions</th>
                     </tr>
                     </thead>
@@ -22,37 +24,9 @@
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large teal tooltipped btn modal-trigger" data-position="left" data-tooltip="Add New Category" href="#modal1">
+            <a class="btn-floating btn-large teal tooltipped btn" data-position="left" data-tooltip="Add New Product" href="{{url('create-product')}}">
                 <i class="large material-icons">add</i>
             </a>
-
-        </div>
-        <div id="modal1" class="modal modal-fixed-footer">
-            <div class="modal-content">
-                <h4>Add Product Category</h4>
-                <div class="row">
-                    <form class="col s12">
-                        @csrf
-                        <div class="row">
-                            <div class="input-field col m6">
-                                <input id="category_name" required type="text" class="validate">
-                                <label for="location_name">Product category Name</label>
-                            </div>
-                            <div class="input-field col m6">
-                                <textarea id="description" class="materialize-textarea"></textarea>
-                                <label for="description">Category Description</label>
-                            </div>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-            <div class="modal-footer">
-                <a href="#!" class="modal-close waves-effect waves-green btn">Cancel<i class="material-icons right">close</i> </a>
-                <button class="btn waves-effect waves-light" style="margin-left:2em;" id="save-product-category" name="action">Submit
-                    <i class="material-icons right">send</i>
-                </button>
-            </div>
         </div>
 
         <style>
@@ -66,31 +40,39 @@
         <script>
             $(document).ready(function () {
                 $('select').formSelect();
+                let url = '/get-agent-assigned-products/'+$('#user_id').val();
                 $(function () {
-                    $('#categories-table').DataTable({
+                    $('#stock-table').DataTable({
                         processing: true,
                         serverSide: true,
                         paging: true,
                         responsive: true,
                         scrollX: 640,
-                        ajax: '{{route('get-product-categories')}}',
+                        ajax: {
+                            'url':url
+                        },
                         columns: [
-                            {data: 'category_name', name: 'category_name'},
-                            {data: 'products_count', name: 'products_count'},
+                            {data: 'barcode', name: 'barcode'},
+                            {data: 'product_name', name: 'product_name'},
+                            {data: 'pivot.product_quantity', name: 'pivot.product_quantity'},
                             {data: 'total_value', name: 'total_value'},
                             {data: 'description', name: 'description'},
+                            {data: 'product_category.category_name', name: 'product_category.category_name'},
                             {data: 'action', name: 'action', orderable: false, searchable: false}
                         ]
                     });
-                    $('select[name="categories-table_length"]').css("display","inline");
+                    $('select[name="stock-table_length"]').css("display","inline");
                 });
-                $('#save-product-category').on('click', function () {
+                $('#save-product').on('click', function () {
                     let formData = new FormData();
-                    formData.append('category_name', $('#category_name').val());
+                    formData.append('barcode', $('#barcode').val());
+                    formData.append('product_name', $('#product_name').val());
+                    formData.append('price', $('#price').val());
                     formData.append('description', $('#description').val());
+                    formData.append('category_id', $('#category_id').val());
 
                     $.ajax({
-                        url: "{{ route('product-categories.store') }}",
+                        url: "{{ route('products.store') }}",
                         processData: false,
                         contentType: false,
                         data: formData,

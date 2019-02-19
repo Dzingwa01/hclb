@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductCategoryStoreRequest;
+use App\Product;
 use App\ProductCategory;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -28,6 +29,21 @@ class ProductCategoryController extends Controller
 
     public function getProductCategories(){
         $categories = ProductCategory::orderBy('category_name','asc')->get();
+
+        foreach ($categories as $category){
+            $category->products_count = $category->products()->sum('quantity');
+            $products = $category->products;
+            $total_sum = 0;
+            foreach ($products as $product){
+                $total_sum += round($product->quantity*$product->price,4);
+            }
+            $category->total_value = number_format($total_sum,2);
+//            $products = Product::whereHas('product_category',function ($query ) use($category){
+//                $query->where('category_name',$category->category_name);
+//                return $query;
+//            });
+
+        }
 
         return Datatables::of($categories)->addColumn('action', function ($category) {
             $re = '/product-category-edit/' . $category->id;

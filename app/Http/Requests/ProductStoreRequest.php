@@ -29,7 +29,8 @@ class ProductStoreRequest extends FormRequest
             'description'=>'nullable',
             'barcode'=>'nullable',
             'category_id'=>'required',
-            'product_image_url'=>'required'
+            'product_image_url'=>'required',
+            'quantity'=>'required'
         ];
     }
 }

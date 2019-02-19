@@ -1,13 +1,13 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-    <div class="container">
+    <div class="container-fluid">
 
         <div class="row" >
-            <div class="col s12 card" style="margin-top:2em;">
+            <div  style="margin-top:2em;">
                 <h5 style="text-align: center">Edit Product Category</h5>
                 <div class="row">
-                    <form class="col s12">
+                    <form class="col s12 card hoverable">
                         @csrf
                         <div class="row">
                             <div class="input-field col m6">

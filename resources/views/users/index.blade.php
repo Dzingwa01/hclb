@@ -2,13 +2,11 @@
 
 @section('content')
     <div class="container-fluid">
-        <div class="row">
+
+        <div class="row" style="margin-left: 1em;margin-right: 1em;">
             <h6 style="text-transform:uppercase;text-align: center;font-weight: bolder;margin-top:2em;">Agents</h6>
-            {{--<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>--}}
-        </div>
-        <div class="row" style="margin-left: 2em;margin-right: 2em;">
-            <div class="col s12">
-                <table class="table table-bordered" style="width: 100%!important;" id="users-table">
+            <div class="col s12 card hoverable">
+                <table class="table table-bordered" style="width: 100%!important;margin-bottom: 2em;" id="users-table">
                     <thead>
                     <tr>
                         <th>Name</th>

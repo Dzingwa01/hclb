@@ -6,7 +6,7 @@
             <h6 style="text-transform:uppercase;text-align: center;font-weight: bolder;margin-top:2em;">Assign Stock - Agents List</h6>
         </div>
         <div class="row" style="margin-left: 2em;margin-right: 2em;">
-            <div class="col s12">
+            <div class="col s12 card hoverable">
                 <table class="table table-bordered" style="width: 100%!important;" id="agents-table">
                     <thead>
                     <tr>

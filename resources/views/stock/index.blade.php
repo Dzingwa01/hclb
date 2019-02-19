@@ -7,13 +7,14 @@
             {{--<a class="btn-floating btn-large waves-effect waves-light red"><i class="material-icons">add</i></a>--}}
         </div>
         <div class="row" style="margin-left: 2em;margin-right: 2em;">
-            <div class="col s12">
+            <div class="col s12 card hoverable">
                 <table class="table table-bordered" style="width: 100%!important;" id="stock-table">
                     <thead>
                     <tr>
                         <th>Bar Code</th>
                         <th>Product Name</th>
-                        <th>Price</th>
+                        <th>Price(R)</th>
+                        <th>Quantity</th>
                         <th>Description</th>
                         <th>Product Category</th>
                         <th>Actions</th>
@@ -51,6 +52,7 @@
                             {data: 'barcode', name: 'barcode'},
                             {data: 'product_name', name: 'product_name'},
                             {data: 'price', name: 'price'},
+                            {data: 'quantity', name: 'quantity'},
                             {data: 'description', name: 'description'},
                             {data: 'product_category.category_name', name: 'product_category.category_name'},
                             {data: 'action', name: 'action', orderable: false, searchable: false}

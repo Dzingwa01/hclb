@@ -1,39 +1,39 @@
 @extends('layouts.admin-layout')
 
 @section('content')
-    <div class="container">
-        <div class="card hoverable" style="margin-top:3em;">
+    <div class="container-fluid">
+        <div style="margin-top:3em;">
+            <h6 style="text-align: center;margin-top:2em;text-transform: uppercase;font-weight: bolder;">Update Agent</h6>
+            <div class="row card hoverable" style="margin-left:1em;margin-right: 1em;">
 
-            <div class="row">
-                <h5 style="text-align: center;margin-top:2em;">Update Agent</h5>
                 <form style="margin: 1em;" id="update-agent-form">
                     @csrf
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="name" required type="text" value="{{$agent->name}}" class="validate">
                             <label for="name">Agent Name</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="surname" required type="text" value="{{$agent->surname}}" class="validate">
                             <label for="surname">Agent Surname</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="email" required type="email" value="{{$agent->email}}" class="validate">
                             <label for="email">Agent Email</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <input id="contact_number" required type="tel" value="{{$agent->contact_number}}" class="validate">
                             <label for="contact_number">Agent Contact Number</label>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <textarea id="address" required class="materialize-textarea">{{$agent->address}}</textarea>
                             <label for="address">Agent Address</label>
                         </div>
-                        <div class="input-field col m6">
+                        <div class="input-field col m6 s12">
                             <select id="location_id">
                                 @foreach($locations as $location)
                                     <option value="{{$location->id}}" {{$agent->location_id==$location->id?'selected':''}}>{{$location->location_name}}</option>
