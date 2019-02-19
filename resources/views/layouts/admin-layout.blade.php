@@ -76,11 +76,12 @@
                 <div class="collapsible-body" >
                     <ul>
                         <li><a style="color:black;font-weight: bolder" class="" href="/assign-stock"><i
-                                        class="tiny material-icons">assignment_ind</i>Assign Stock</a></li>
+                                        class="tiny material-icons">assignment_ind</i>Agent Stock</a></li>
+                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('products')}}"><i
+                                        class="tiny material-icons">add_to_queue</i>Products</a></li>
                         <li><a style="color:black;font-weight: bolder" class="" href="{{url('product-categories')}}"><i
                                         class="tiny material-icons">bookmark_border</i>Product Categories</a></li>
-                        <li><a style="color:black;font-weight: bolder" class="" href="{{url('products')}}"><i
-                                        class="tiny material-icons">add_to_queue</i>Stock List</a></li>
+
                     </ul>
                 </div>
             </li>

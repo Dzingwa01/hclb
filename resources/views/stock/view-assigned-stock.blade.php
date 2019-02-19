@@ -24,7 +24,7 @@
             </div>
         </div>
         <div class="fixed-action-btn">
-            <a class="btn-floating btn-large teal tooltipped btn" data-position="left" data-tooltip="Add New Product" href="{{url('create-product')}}">
+            <a class="btn-floating btn-large teal tooltipped btn" data-position="left" data-tooltip="Add New Product" href="{{'/assign-agent-stock/'.$agent->id}}">
                 <i class="large material-icons">add</i>
             </a>
         </div>
